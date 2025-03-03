@@ -15,12 +15,14 @@ public class Consumer implements Runnable {
     public void run() {
         while (true) {
             if (store.getSize() > 0) { // Chỉ lấy nếu có hàng
-                store.removeProduct(consumerName);
-            }
-            try {
-                Thread.sleep((long) (Math.random()*100));
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                if (store.getSize() > 0) {
+                    store.removeProduct(consumerName);
+                }
+                try {
+                    Thread.sleep((long) (Math.random() * 100));
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
         }
     }
